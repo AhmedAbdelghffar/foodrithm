@@ -1,28 +1,46 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
-  </div>
+  <v-app>
+    <appHeader></appHeader>
+    <main>
+      <v-container>
+       <transition name="page" mode="out-in">
+       <router-view> </router-view>
+       </transition>
+      </v-container> 
+    </main>
+  </v-app>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import appHeader from './components/header'
 
 export default {
-  name: 'app',
+  name: 'App',
   components: {
-    HelloWorld
+    appHeader
+  },
+  data () {
+    return {
+     
+    }
+  },
+  created(){
+    this.$store.dispatch('initFoods');
   }
 }
 </script>
 
 <style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+.page-enter-active, .page-leave-active {
+  transition: opacity 1s, transform 1s;
 }
+.page-enter, .page-leave-to {
+  opacity: 0;
+  transform: translateY(-30%);
+}
+
+body{
+  background: #F5F5F5;
+}
+
 </style>
