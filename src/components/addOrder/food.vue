@@ -10,14 +10,10 @@
        <v-flex xs-4 class="text-xs-right">
         <v-spacer> </v-spacer>
         <ul>
-             <li>
-              <v-btn fab dark small color="primary">
-                <v-icon dark>remove</v-icon>
-              </v-btn>
-            </li>
+           
             <li>
-              <v-btn fab dark small color="primary" @click="addFoodOrder">
-                <v-icon dark>add</v-icon>
+              <v-btn  dark color="primary" @click="addFoodOrder">
+                Add
               </v-btn>
             </li>
 

@@ -4,6 +4,7 @@ import VuexPersist from 'vuex-persist'
 
 import food from './modules/food'
 import order from './modules/order'
+import orders from './modules/orders'
 
 Vue.use(Vuex);
 
@@ -15,7 +16,8 @@ const vuexPersist = new VuexPersist({
 export default new Vuex.Store({
     modules:{
         food,
-        order
+        order,
+        orders
     },
     plugins: [vuexPersist.plugin]
 })
