@@ -1,3 +1,15 @@
 <template>
-    <h1> show orders </h1>
+    <div>
+       <usersOrders></usersOrders>  
+    </div>
 </template>
+
+<script>
+import usersOrders from './showOrders/orders'
+export default {
+    components : {
+       usersOrders 
+    }
+    
+}
+</script>
