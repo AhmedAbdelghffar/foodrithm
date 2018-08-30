@@ -1,14 +1,17 @@
 <template>
     <div>
-       <usersOrders></usersOrders>  
+       <usersOrders></usersOrders> 
+        <totalOrder></totalOrder> 
     </div>
 </template>
 
 <script>
 import usersOrders from './showOrders/orders'
+import totalOrder from './showOrders/totalOrder'
 export default {
     components : {
-       usersOrders 
+       usersOrders,
+       totalOrder
     }
     
 }

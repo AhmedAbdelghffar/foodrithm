@@ -1,4 +1,5 @@
 import foods from '../../data/foods'
+import request from 'superagent'
 
 const state= {
     foods: []
@@ -7,7 +8,15 @@ const state= {
 
 const mutations = {
     'SET_FOODS' (state , foods){
-        state.foods = foods;
+        request.get('https://stock-71167.firebaseio.com/stocks.json')
+        .then(response => {
+            const result= [];
+            for( let i in response.body){
+                result.push(response.body[i]);
+            }
+            state.foods = result;
+        });
+       
     }
 };
 

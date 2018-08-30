@@ -48,7 +48,6 @@ const actions = {
     empty_order ({commit}){
         commit('EMPTY_ORDER');
     }
-
 }
 
 
