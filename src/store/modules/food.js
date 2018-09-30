@@ -1,4 +1,4 @@
-import foods from '../../data/foods'
+
 import request from 'superagent'
 
 const state= {
@@ -7,7 +7,7 @@ const state= {
 
 
 const mutations = {
-    'SET_FOODS' (state , foods){
+    'SET_FOODS' (state){
         request.get('https://stock-71167.firebaseio.com/stocks.json')
         .then(response => {
             const result= [];
@@ -17,13 +17,23 @@ const mutations = {
             state.foods = result;
         });
        
+    },
+    'ADD_FOODS' (state , food){
+        console.log(food);
+        request.post('https://stock-71167.firebaseio.com/stocks.json')
+        .send({ name : food.name , price: food.price})
+        .then(response => {
+        });
     }
 };
 
 
 const actions = {
     initFoods: ({commit}) => {
-        commit('SET_FOODS' , foods);
+        commit('SET_FOODS');
+    },
+    addFood({commit},food){
+        commit('ADD_FOODS',food);
     } 
 };
 

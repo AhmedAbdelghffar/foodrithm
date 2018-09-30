@@ -2,7 +2,7 @@ import request from 'superagent'
 
 const state = {
     orders:[],
-    totalOrdersPrice:0
+    total:0
 }
 
 const mutations = {
@@ -13,29 +13,21 @@ const mutations = {
             orderPrice: orderPrice
         })
 
-        request.get('https://stock-71167.firebaseio.com/totalPrice.json')
-        .then(response => {
-            const result= [];
-            for( let i in response.body){
-                result.push(response.body[i]);
-            }
-            console.log(result[0]);
-            state.totalOrdersPrice = result[0];
-            
-        });
-        
-        state.totalOrdersPrice += orderPrice;
-
-        request.put('https://stock-71167.firebaseio.com/totalPrice.json')
-        .send({ totalPrice : state.totalOrdersPrice })
-        .then(response => {
-        });
-
         request.post('https://stock-71167.firebaseio.com/orders.json')
         .send({ userName : userName , order: order, orderPrice: orderPrice})
         .then(response => {
         });
-    
+    },
+    'UPDATE_TOTAL' (state){
+        request.get('https://stock-71167.firebaseio.com/orders.json')
+        .then(response => {
+            var result=0;
+            for( let i in response.body){
+                result += response.body[i].orderPrice;
+            }
+            state.total = result;
+            
+        });
     }
 
 }
@@ -44,6 +36,9 @@ const mutations = {
 const actions = {
     add_user_order({commit},order ){
         commit('ADD_USER_ORDER',order)
+    },
+    updateTotal({commit}){
+        commit('UPDATE_TOTAL');
     }
 }
 
@@ -61,17 +56,15 @@ const getters = {
         return state.orders;
     },
     totalOrdersPrice(state){
-        request.get('https://stock-71167.firebaseio.com/totalPrice.json')
+        request.get('https://stock-71167.firebaseio.com/orders.json')
         .then(response => {
-            const result= [];
+            var result=0;
             for( let i in response.body){
-                result.push(response.body[i]);
+                result += response.body[i].orderPrice;
             }
-            console.log(result[0]);
-            state.totalOrdersPrice = result[0];
-            
+            state.total = result;
         });
-        return state.totalOrdersPrice;
+        return state.total;
     }
 }
 

@@ -18,6 +18,5 @@ export default new Vuex.Store({
         food,
         order,
         orders
-    },
-    plugins: [vuexPersist.plugin]
+    }
 })

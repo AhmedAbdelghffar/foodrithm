@@ -3,7 +3,7 @@
     
     <div class="single-food-item">
     <v-layout row justify-space-between>
-       <v-flex xs-4>
+       <v-flex v-if="food" xs-4>
         <h3>{{food.name}}</h3>
         <h4>{{ food.price }} EGP</h4>
        </v-flex>  
@@ -32,9 +32,8 @@ export default {
     methods: {
        addFoodOrder(){
            const order = {
-               foodId: this.food.id,
                foodName: this.food.name,
-               foodPrice: this.food.price
+               foodPrice: parseInt(this.food.price)
            }
 
            this.$store.dispatch('add_food_order',order)

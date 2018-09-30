@@ -1,6 +1,6 @@
 <template>
 <div>
-    <v-card>
+    <v-card v-if="foods">
     <appFood v-for="(food,index) in foods" :key='index' :food="food" > </appFood> 
     </v-card>
 </div>

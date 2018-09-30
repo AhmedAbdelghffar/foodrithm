@@ -51,7 +51,9 @@ export default {
                 userName : this.userName,
                 orderPrice : this.orderPrice
             }
-            this.$store.dispatch('add_user_order' , orders);
+            this.$store.dispatch('add_user_order' , orders).then(() =>{
+                this.$store.dispatch('updateTotal')
+            });
             this.userName = '';
             this.$store.dispatch('empty_order');
         }

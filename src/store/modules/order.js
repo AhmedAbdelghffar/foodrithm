@@ -4,14 +4,13 @@ const state = {
 }
 
 const mutations = {
-   'ADD_FOOD_ORDER' (state , {foodId , foodName , foodPrice}){
-       const index = state.order.findIndex( element => element.id == foodId);
+   'ADD_FOOD_ORDER' (state , {foodName , foodPrice}){
+       const index = state.order.findIndex( element => element.name == foodName);
        if (index != -1){
            state.order[index].quantity++;
            state.order[index].totalPrice += foodPrice;
        }else{
            state.order.push({
-               id: foodId ,
                name: foodName,
                quantity: 1,
                price: foodPrice,
@@ -20,8 +19,8 @@ const mutations = {
        }
        state.orderPrice += foodPrice;
    },
-   'REMOVE_FOOD_ORDER' (state , {foodId , foodName , foodPrice}){
-    const index = state.order.findIndex( element => element.id == foodId);
+   'REMOVE_FOOD_ORDER' (state , { foodName , foodPrice}){
+    const index = state.order.findIndex( element => element.name == foodName);
     if (state.order[index].quantity > 1){
         state.order[index].quantity--;
         state.order[index].totalPrice -= foodPrice;

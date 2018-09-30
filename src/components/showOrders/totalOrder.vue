@@ -2,16 +2,29 @@
     <div>
         <br>
         <v-card>
-             <h3>Total Order Price: {{ totalOrderPrice }} EGP</h3>
+             <h3>Total Order Price: {{ total }} EGP</h3>
         </v-card>     
     </div>
 </template>
 
 <script>
 export default {
+    data () {
+        return {
+            total: 0,
+        }
+    },
+    beforeMount() {
+        this.total = this.$store.getters.totalOrdersPrice;
+    },
     computed:{
-        totalOrderPrice(){
+        totalState(){
             return this.$store.getters.totalOrdersPrice;
+        },
+    },
+    watch: {
+        totalState(state) {
+            this.total = state
         }
     }
 }

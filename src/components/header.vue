@@ -5,6 +5,7 @@
     <v-toolbar-items class="hidden-sm-and-down">
       <v-btn to="/" flat> <v-icon left>fastfood</v-icon>Add Order</v-btn>
       <v-btn to="/showorders" flat><v-icon left>shopping_cart</v-icon>Veiw Orders</v-btn>
+      <v-btn to="/addfood" flat><v-icon left>playlist_add</v-icon>Add Food</v-btn>
     </v-toolbar-items>
     </v-toolbar>
 </template>
