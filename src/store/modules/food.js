@@ -51,3 +51,5 @@ export default {
     actions,
     getters
 }
+
+/* some changes to commit */
