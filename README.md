@@ -1,4 +1,7 @@
 # foodrithm
+```
+My first Vue Project :D
+```
 
 ## Project setup
 ```
